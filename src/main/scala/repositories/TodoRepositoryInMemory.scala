@@ -7,6 +7,7 @@ implicit val ec: scala.concurrent.ExecutionContext = scala.concurrent.ExecutionC
 
 object TodoRepositoryInMemory extends TodoRepository:
     private val list: ConcurrentHashMap[Id, Todo] = new ConcurrentHashMap[String, Todo]()
+
     override def create(todo: CreateTodoDTo)(using ec: scala.concurrent.ExecutionContext): Future[Todo] =
         val promise: Promise[Todo] = Promise()
         ec.execute { () =>

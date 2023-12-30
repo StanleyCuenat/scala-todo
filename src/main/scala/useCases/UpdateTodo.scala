@@ -31,7 +31,6 @@ case class UpdateTodo(todoRepository: TodoRepository) extends UseCase[(UpdateTod
         then Some(errors)
         else None
             
-
     override def execute(inputs: UpdateTodoDTo) =
         todoRepository
         .get(inputs.id)
@@ -45,6 +44,4 @@ case class UpdateTodo(todoRepository: TodoRepository) extends UseCase[(UpdateTod
                     case None => updateTodo(inputs, data.status)
                     case Some(value) => Future.successful(UseCaseFail(value))
             case other => Future.successful(other)
-        }).recover({
-            case _ => UseCaseFail(Array(UPDATE_TODO_ERROR.UNKNOWN))
-        })
+        }).recover({ case _ => UseCaseFail(Array(UPDATE_TODO_ERROR.UNKNOWN)) })

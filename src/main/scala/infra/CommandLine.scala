@@ -43,7 +43,6 @@ case class  CommandLineInfra(todoRepository: TodoRepository) extends Infra {
             case UseCaseSuccess(data) =>  data match {
                 case e: List[_]  => e.map(println)
                 case _ => println(data)
-
             }
             case UseCaseFail(errors) => errors.map(e => println(e))
         }

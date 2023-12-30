@@ -27,6 +27,7 @@ object TodoDtoFactory {
             _title <- title
             _content <- content
         } yield UpdateTodoDTo(_id, _title, _content)
+
     def setTodoDto(id: Option[String], status: Option[String]) = 
         for {
             _id <- id

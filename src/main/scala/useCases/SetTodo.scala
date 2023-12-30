@@ -16,4 +16,4 @@ case class SetTodo(todoRepository: TodoRepository) extends  UseCase[SetTodoDTo, 
                 .update(Todo(value.id, value.title, value.content, inputs.status))
                 .flatMap({ case e: Todo => Future.successful(UseCaseSuccess(e)) })
         })
-        .recover( {case _ => UseCaseFail(Array(SET_TODO_ERROR.UNKNOWN))} )
+        .recover({ case _ => UseCaseFail(Array(SET_TODO_ERROR.UNKNOWN)) })

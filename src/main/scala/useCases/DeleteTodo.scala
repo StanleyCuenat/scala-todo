@@ -17,6 +17,4 @@ case class DeleteTodo(todoRepository: TodoRepository) extends  UseCase[Id, Id, D
             case None => Future.successful(UseCaseFail(Array(DELETE_TODO_ERROR.NOT_FOUND)))
             case Some(todo) => delete(id)
         })
-        .recover({
-            case _ => UseCaseFail(Array(DELETE_TODO_ERROR.UNKNOWN))
-        })
+        .recover({ case _ => UseCaseFail(Array(DELETE_TODO_ERROR.UNKNOWN)) })
